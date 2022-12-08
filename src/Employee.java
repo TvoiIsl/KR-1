@@ -1,5 +1,5 @@
 public class Employee {
-    private String namePerson;
+    private final String namePerson;
     private int division;
     private int salary;
 
@@ -51,40 +51,50 @@ public class Employee {
         int sum = 0;
         int averageSum = 0;
         for (int i = 0; i < employees.length; i++) {
-            Employee employee = employees[i];
-            sum = sum + employee.salary;
+            if (employees[i] != null) {
+                Employee employee = employees[i];
+                sum = sum + employee.salary;
+            }
         }
         System.out.println("Сумма затрат на зарплаты = " + sum);
-        averageSum = sum / 10;
+        averageSum = sum / employees.length;
         System.out.println("Средняя зарплата = " + averageSum);
     }
 
     public static void listSalaryMin(Employee[] employees) {
         int min = 50000;
         for (int i = 0; i < employees.length; i++) {
-            Employee employee = employees[i];
-            if (min > employee.salary){
-                min = employee.salary;
-            id=i;
+            if (employees[i] != null) {
+                Employee employee = employees[i];
+                if (min > employee.salary) {
+                    min = employee.salary;
+                    id = i;
+                }
             }
         }
-        System.out.println("Сотрудник с минимальной зарплатой: " +employees[id]);
+        System.out.println("Сотрудник с минимальной зарплатой: " + employees[id]);
     }
+
     public static void listSalaryMax(Employee[] employees) {
         int max = 0;
         for (int i = 0; i < employees.length; i++) {
-            Employee employee = employees[i];
-            if (max < employee.salary){
-                max = employee.salary;
-            id=i;
+            if (employees[i] != null) {
+                Employee employee = employees[i];
+                if (max < employee.salary) {
+                    max = employee.salary;
+                    id = i;
+                }
             }
         }
-        System.out.println("Сотрудник с максимальной зарплатой: " +employees[id]);
+        System.out.println("Сотрудник с максимальной зарплатой: " + employees[id]);
     }
+
     public static void name(Employee[] employees) {
         for (int i = 0; i < employees.length; i++) {
-            Employee employee = employees[i];
-            System.out.println("ФИО сотрудника: " + employee.namePerson);
+            if (employees[i] != null) {
+                Employee employee = employees[i];
+                System.out.println("ФИО сотрудника: " + employee.namePerson);
+            }
         }
     }
 }
