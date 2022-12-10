@@ -3,11 +3,13 @@ public class Employee {
     private int division;
     private int salary;
 
-    static int id = 0;
+    private final int id;
+    private static int counter =0;
 
 
     public Employee(String namePerson, int division, int salary) {
         this.namePerson = namePerson;
+        this.id=counter++;
         this.division = division;
         this.salary = salary;
     }
@@ -38,7 +40,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "ФИО: " + namePerson + " Отдел: " + division + " Зарплата: " + salary;
+        return "№"+id+" ФИО: " + namePerson + " Отдел: " + division + " Зарплата: " + salary;
     }
 
     public static void listEmployee(Employee[] employees) {
@@ -62,31 +64,33 @@ public class Employee {
     }
 
     public static void listSalaryMin(Employee[] employees) {
+        int s=0;
         int min = 50000;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null) {
                 Employee employee = employees[i];
                 if (min > employee.salary) {
                     min = employee.salary;
-                    id = i;
+                    s = i;
                 }
             }
         }
-        System.out.println("Сотрудник с минимальной зарплатой: " + employees[id]);
+        System.out.println("Сотрудник с минимальной зарплатой: " + employees[s]);
     }
 
     public static void listSalaryMax(Employee[] employees) {
+        int s=0;
         int max = 0;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null) {
                 Employee employee = employees[i];
                 if (max < employee.salary) {
                     max = employee.salary;
-                    id = i;
+                    s = i;
                 }
             }
         }
-        System.out.println("Сотрудник с максимальной зарплатой: " + employees[id]);
+        System.out.println("Сотрудник с максимальной зарплатой: " + employees[s]);
     }
 
     public static void name(Employee[] employees) {
